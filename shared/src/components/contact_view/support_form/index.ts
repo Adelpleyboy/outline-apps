@@ -25,7 +25,7 @@ import '@material/mwc-textfield';
 import {AppType} from '../app_type';
 import {TextField} from '@material/mwc-textfield';
 import {SelectedDetail} from '@material/mwc-menu/mwc-menu-base';
-import {Localizer} from 'src/infrastructure/i18n';
+import {Localizer} from '../../../i18n';
 
 type FormControl = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
 
@@ -107,8 +107,8 @@ export class SupportForm extends LitElement {
 
   /** Checks the entire form's validity state. */
   private checkFormValidity() {
-    const fieldNodes = this.formRef.value.querySelectorAll<FormControl>('*[name]');
-    this.valid = Array.from(fieldNodes).every(field => field.validity.valid);
+    const fieldNodes = this.formRef.value?.querySelectorAll<FormControl>('*[name]');
+    this.valid = Array.from(fieldNodes ?? []).every(field => field.validity.valid);
   }
 
   /** Cancels the form. */

@@ -18,7 +18,8 @@
   "private": true,
   "workspaces": [
     "server_manager",
-    "client"
+    "client",
+    "shared"
   ],
   "devDependencies": {
     "electron-builder": "^24.13.3"

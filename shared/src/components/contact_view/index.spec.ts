@@ -18,7 +18,7 @@ import {ContactView} from './index';
 
 import {fixture, html, nextFrame, oneEvent} from '@open-wc/testing';
 import {SupportForm} from './support_form';
-import {OutlineErrorReporter, SentryErrorReporter} from '../../shared/error_reporter';
+import {OutlineErrorReporter, SentryErrorReporter} from '../../error_reporter';
 import {localize} from '../../testing/localize';
 import {ListItemBase} from '@material/mwc-list/mwc-list-item-base';
 import {Select} from '@material/mwc-select';

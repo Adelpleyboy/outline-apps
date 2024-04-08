@@ -29,8 +29,8 @@ import './support_form';
 import {IssueType, UNSUPPORTED_ISSUE_TYPE_HELPPAGES} from './issue_type';
 import {AppType} from './app_type';
 import {FormValues, SupportForm, ValidFormValues} from './support_form';
-import {OutlineErrorReporter} from '../../shared/error_reporter';
-import {Localizer} from 'src/infrastructure/i18n';
+import {OutlineErrorReporter} from '../../error_reporter';
+import {Localizer} from '../../i18n';
 
 /** The possible steps in the stepper. Only one step is shown at a time. */
 enum Step {
@@ -134,7 +134,7 @@ export class ContactView extends LitElement {
 
   @property({type: Function}) localize: Localizer = msg => msg;
   @property({type: String}) variant: AppType = AppType.CLIENT;
-  @property({type: Object, attribute: 'error-reporter'}) errorReporter: OutlineErrorReporter;
+  @property({type: Object, attribute: 'error-reporter'}) errorReporter?: OutlineErrorReporter;
 
   @state() private step: Step = Step.ISSUE_WIZARD;
   private selectedIssueType?: IssueType;
@@ -180,7 +180,7 @@ export class ContactView extends LitElement {
       // TODO: Send users to localized support pages based on chosen language.
       this.exitTemplate = this.localizeWithUrl(
         `contact-view-exit-${this.selectedIssueType}`,
-        UNSUPPORTED_ISSUE_TYPE_HELPPAGES.get(this.selectedIssueType)
+        UNSUPPORTED_ISSUE_TYPE_HELPPAGES.get(this.selectedIssueType) ?? ''
       );
       this.step = Step.EXIT;
       return;
@@ -203,8 +203,12 @@ export class ContactView extends LitElement {
   private async submitForm() {
     this.isFormSubmitting = true;
 
-    if (!this.formRef.value.valid) {
+    if (!this.formRef.value?.valid) {
       throw Error('Cannot submit invalid form.');
+    }
+
+    if (!this.errorReporter) {
+      throw Error('Error reporting not set.');
     }
 
     const {description, email, ...tags} = this.formValues as ValidFormValues;
@@ -214,7 +218,7 @@ export class ContactView extends LitElement {
         formVersion: 2,
       });
     } catch (e) {
-      console.error(`Failed to send feedback report: ${e.message}`);
+      console.error(`Failed to send feedback report: ${(e as Error).message}`);
       this.isFormSubmitting = false;
       this.dispatchEvent(new CustomEvent('error'));
       return;

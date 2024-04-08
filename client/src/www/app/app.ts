@@ -21,13 +21,13 @@ import {SERVER_CONNECTION_INDICATOR_DURATION_MS} from '../views/servers_view/ser
 
 import {Clipboard} from './clipboard';
 import {EnvironmentVariables} from './environment';
-import {OutlineErrorReporter} from '../shared/error_reporter';
+import {OutlineErrorReporter} from '@outline-apps/shared/build/error_reporter';
 import {OutlineServerRepository} from './outline_server_repository';
 import {Settings, SettingsKey} from './settings';
 import {Updater} from './updater';
 import {UrlInterceptor} from './url_interceptor';
 import {VpnInstaller} from './vpn_installer';
-import {Localizer} from 'src/infrastructure/i18n';
+import {Localizer} from '@outline-apps/shared/build/i18n';
 
 enum OUTLINE_ACCESS_KEY_SCHEME {
   STATIC = 'ss',

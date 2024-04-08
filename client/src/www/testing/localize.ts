@@ -14,7 +14,7 @@
   limitations under the License.
 */
 
-import type {FormattableMessage, Localizer} from 'src/infrastructure/i18n';
+import type {FormattableMessage, Localizer} from '@outline-apps/shared/build/i18n';
 import englishMessages from '../messages/en.json';
 import IntlMessageFormat from 'intl-messageformat';
 

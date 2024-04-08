@@ -26,7 +26,7 @@ import * as Sentry from '@sentry/browser';
 
 import {AbstractClipboard} from './clipboard';
 import {EnvironmentVariables} from './environment';
-import {SentryErrorReporter, Tags} from '../shared/error_reporter';
+import {SentryErrorReporter, Tags} from '@outline-apps/shared/build/error_reporter';
 import {main} from './main';
 import * as errors from '../model/errors';
 import {OutlinePlatform} from './platform';

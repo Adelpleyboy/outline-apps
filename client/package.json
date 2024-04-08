@@ -15,6 +15,7 @@
     "@material/mwc-select": "^0.25.3",
     "@material/mwc-textarea": "^0.25.3",
     "@material/mwc-textfield": "^0.25.3",
+    "@outline-apps/shared": "0.0.0",
     "@polymer/app-layout": "^3.1.0",
     "@polymer/app-localize-behavior": "^3.0.1",
     "@polymer/app-route": "^3.0.2",
